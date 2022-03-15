@@ -8,11 +8,11 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
-        stage('Build Dcoker Image'){
+        stage('Build Docker Image') {
             when {
                 branch 'master'
             }
-            steps{
+            steps {
                 script {
                     app = docker.build("monish57/train-schedule")
                     app.inside {
@@ -26,11 +26,13 @@ pipeline {
                 branch 'master'
             }
             steps {
-                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
-    }
+    }   
 }
