@@ -15,7 +15,6 @@ pipeline {
             steps {
                 script {
                     app = docker.build("monish57/train-schedule")
-                    }
                 }
             }
         }
