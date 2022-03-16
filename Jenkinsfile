@@ -12,6 +12,10 @@ pipeline {
             when {
                 branch 'master'
             }
+            steps {
+                echo 'Running build docker image'
+                }
+            }
         }
     }
 }
