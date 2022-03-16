@@ -13,8 +13,11 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Running build docker image'
+                script {
+                    docker.build
+                    }
                 }
             }
         }
     }
+}
